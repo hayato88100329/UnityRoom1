@@ -3,31 +3,54 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class TinyAudio : MonoBehaviour
+
 {
     public static TinyAudio Instance;
-    /// <summary>
-    /// seListに設定する効果音の種類を以下に定義します。
-    /// </summary>
-    public enum SE
+
+    public enum Bgm
     {
-        CLICK,
-        HIT,
-        MAGIC
+        Gameover,
+        Clear
     }
-    [Tooltip("効果音のAudio Clipを、SEの列挙子と同じ順番で設定してください。"), SerializeField]
-    AudioClip[] seList;
+
+    [Tooltip("BGM音源"), SerializeField]
+    AudioClip[] bgmList = null;
+
+    public enum Se
+    {
+        Click,
+        Hit,
+        Get
+
+    }
+
+    [Tooltip("効果音データ"), SerializeField]
+    AudioClip[] seList = null;
+
     AudioSource audioSource;
-    private void Awake()
+
+
+    void Awake()
     {
         Instance = this;
         audioSource = GetComponent<AudioSource>();
     }
-    /// <summary>
-    /// SEで指定した効果音を再生します。
-    /// </summary>
-    /// <param name="se">鳴らしたい効果音</param>
-    public static void PlaySE(SE se)
+
+    public static void PlaySe(Se se)
     {
-        Instance.audioSource.PlayOneShot(Instance.seList[(int)se]);
+        Instance.audioSource.PlayOneShot(
+            Instance.seList[(int)se]);
+    }
+
+    public static void StopBGM()
+    {
+        Instance.audioSource.Stop();
+    }
+
+    public static void PlayBGM(Bgm bgm)
+    {
+        //StopBGM();
+        Instance.audioSource.clip = Instance.bgmList[(int)bgm];
+        Instance.audioSource.Play();
     }
 }
