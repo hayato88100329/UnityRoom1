@@ -50,7 +50,7 @@ public class TinyAudio : MonoBehaviour
     public static void PlayBGM(Bgm bgm)
     {
         //StopBGM();
-       // Instance.audioSource.clip = Instance.bgmList[(int)bgm];
+        Instance.audioSource.clip = Instance.bgmList[(int)bgm];
         Instance.audioSource.Play();
     }
 }
