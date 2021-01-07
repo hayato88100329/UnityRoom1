@@ -19,7 +19,7 @@ public class Mover : MonoBehaviour
         //ローカル変数thに、0～359の角度を乱数で求める
         var th = Random.Range(0, 360);
         //ローカル変数dirに、角度thで長さ1の方向ベクトルを求める
-        var dir = new Vector3(Mathf.Cos(th*Mathf.Deg2Rad), Mathf.Sin(th*Mathf.Deg2Rad),0);
+        var dir = new Vector3(Mathf.Cos(th), Mathf.Sin(th));
         //変数rbに、Rigidbodyのインスタンスを取得する
         rb = GetComponent<Rigidbody>();
         //以上で求めた値を使って、速度を設定する
@@ -28,9 +28,6 @@ public class Mover : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        if(Mathf.Approximately(rb.velocity.magnitude,0f))
-        {
 
-        }
     }
 }
